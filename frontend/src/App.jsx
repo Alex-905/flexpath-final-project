@@ -1,14 +1,24 @@
 import React from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import MyTripLists from "./pages/MyTripLists";
+import AddResort from "./pages/AddResort";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        {/* <p> tag is a placeholder, You'll need to change the tag/component type later*/}
-        <p className="navbar-brand ms-4 nav-link">You've got this!</p>
+        <Link className="navbar-brand ms-4 nav-link" to="/">Home</Link>
+        <Link className="nav-link" to="/my-trip-lists">My Trip Lists</Link>
+        <Link className="nav-link" to="/add-resort">Add Resort</Link>
       </nav>
       <hr />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/my-trip-lists" element={<MyTripLists />} />
+        <Route path="/add-resort" element={<AddResort />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
