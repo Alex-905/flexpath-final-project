@@ -5,6 +5,8 @@ import org.example.services.ResortService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.http.HttpStatus;
 
 import java.util.List;
@@ -39,7 +41,14 @@ public class ResortController {
         return resortService.updateResort(resort);
     }
 
+
+    @GetMapping(path = "/search")
+    public List<Resort> search(@RequestParam String location, @RequestParam String diffLevel) {
+        return resortService.searchResorts(location, diffLevel);
+    }
+
     @DeleteMapping(path = "/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public int delete(@PathVariable int id) {
         return resortService.deleteResort(id);
     }

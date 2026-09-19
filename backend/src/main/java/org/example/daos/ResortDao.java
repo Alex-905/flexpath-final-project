@@ -80,4 +80,9 @@ public class ResortDao {
             return getResortById(resort.getId());
         }
     }
+
+    public List<Resort> searchResorts(String location, String diffLevel) {
+        String sql = "SELECT * FROM resorts WHERE location LIKE ? AND diff_level = ?";
+        return jdbcTemplate.query(sql, this::mapToResort, "%" + location + "%", diffLevel);
+    }
 }

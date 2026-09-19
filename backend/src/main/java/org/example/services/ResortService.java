@@ -34,4 +34,8 @@ public class ResortService {
     public int deleteResort(int id) {
         return resortDao.deleteResort(id);
     }
+
+    public List<Resort> searchResorts(String location, String diffLevel) {
+        return resortDao.searchResorts(location, diffLevel);
+    }
 }
